@@ -1,0 +1,82 @@
+:root {
+  /* Aronium Theme Colors */
+  --bg-dark: #202020;         /* Main Window Background */
+  --bg-panel: #2d2d2d;        /* Panels / Header */
+  --bg-table-header: #252525;
+  
+  --accent-cyan: #00bef2;     /* Selection / Highlights */
+  --accent-green: #37a000;    /* Payment Button */
+  --accent-red: #e51400;      /* Void Button */
+  
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  
+  --border-color: #444444;    /* Subtle dividers */
+  
+  --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* Function Key Grid */
+.function-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background-color: var(--border-color); /* Gap color */
+}
+
+.func-btn {
+  background-color: var(--bg-panel);
+  border: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.1s;
+}
+
+.func-btn:hover {
+  background-color: #3a3a3a;
+}
+
+.func-btn:active {
+  background-color: #444;
+}
+
+.func-btn.green { background-color: var(--accent-green); }
+.func-btn.red { background-color: var(--accent-red); }
+.func-btn.green:hover { background-color: #43b310; }
+.func-btn.red:hover { background-color: #f02010; }
