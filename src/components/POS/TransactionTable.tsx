@@ -5,15 +5,18 @@ interface TransactionTableProps {
   items: CartItem[];
   selectedId?: string;
   onSelect: (id: string) => void;
+  subtotal: number;
+  tax: number;
+  total: number;
 }
 
-export const TransactionTable: React.FC<TransactionTableProps> = ({ items, selectedId, onSelect }) => {
+export const TransactionTable: React.FC<TransactionTableProps> = ({ items, selectedId, onSelect, subtotal, tax, total }) => {
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#000' }}>
       {/* Table Header */}
       <div style={{ 
         display: 'grid', 
-        gridTemplateColumns: 'minmax(200px, 1fr) 100px 100px 100px', 
+        gridTemplateColumns: 'minmax(100px, 1fr) 100px 100px 100px', 
         padding: '8px 12px',
         backgroundColor: 'var(--bg-panel)',
         borderBottom: '2px solid var(--accent-cyan)',
@@ -67,11 +70,11 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ items, selec
       }}>
          <div style={{ display: 'flex', width: '300px', justifyContent: 'space-between', marginBottom: 4 }}>
            <span style={{ color: 'var(--text-secondary)' }}>Subtotal</span>
-           <span>0.00</span>
+           <span>{subtotal.toFixed(2)}</span>
          </div>
          <div style={{ display: 'flex', width: '300px', justifyContent: 'space-between', marginBottom: 8 }}>
-           <span style={{ color: 'var(--text-secondary)' }}>Tax</span>
-           <span>0.00</span>
+           <span style={{ color: 'var(--text-secondary)' }}>Tax (10%)</span>
+           <span>{tax.toFixed(2)}</span>
          </div>
          <div style={{ 
            display: 'flex', 
@@ -83,7 +86,7 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ items, selec
            paddingTop: 8
          }}>
            <span>Total</span>
-           <span>0.00</span>
+           <span>{total.toFixed(2)}</span>
          </div>
       </div>
     </div>

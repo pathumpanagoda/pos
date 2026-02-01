@@ -1,0 +1,123 @@
+.side-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.side-menu-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.side-menu-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    /* Right side menu */
+    width: 300px;
+    height: 100vh;
+    background-color: #252526;
+    z-index: 1001;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.side-menu-drawer.open {
+    transform: translateX(0);
+}
+
+.side-menu-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333333;
+    color: #fff;
+}
+
+.side-menu-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.close-btn:hover {
+    opacity: 1;
+}
+
+.side-menu-content {
+    flex: 1;
+    padding: 20px 0;
+    overflow-y: auto;
+}
+
+.side-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    color: #cccccc;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.95rem;
+    gap: 16px;
+}
+
+.side-menu-item:hover {
+    background-color: #3e3e42;
+    color: #fff;
+}
+
+.side-menu-item svg {
+    opacity: 0.8;
+}
+
+.menu-divider {
+    height: 1px;
+    background-color: #3e3e42;
+    margin: 8px 0;
+}
+
+.menu-section-title {
+    padding: 8px 24px;
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.side-menu-footer {
+    padding: 20px;
+    border-top: 1px solid #3e3e42;
+    background-color: #1e1e1e;
+    text-align: center;
+}
+
+.date-display {
+    color: #888;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    color: #ccc;
+}

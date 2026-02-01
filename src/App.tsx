@@ -1,29 +1,33 @@
-import { useState } from 'react';
-import { MainLayout } from './components/Layout/MainLayout';
-import { TransactionTable } from './components/POS/TransactionTable';
-import { FunctionKeyPad } from './components/POS/FunctionKeyPad';
-import type { CartItem } from './types';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { POS } from './pages/POS';
+import { DashboardLayout } from './layouts/DashboardLayout';
+import { DashboardHome } from './pages/Dashboard/Home';
 
-// Mock Items for visual check (Pre-filled cart)
-const INITIAL_CART: CartItem[] = [
-  { id: '1', name: 'Wireless Headphones', price: 59.99, category: 'Electronics', quantity: 1 },
-  { id: '2', name: 'USB-C Cable 2m', price: 12.50, category: 'Accessories', quantity: 2 },
-];
+const Placeholder = ({ title }: { title: string }) => (
+  <div style={{ color: '#fff', padding: 20 }}>
+    <h1>{title}</h1>
+    <p>Measurement/Management page implementation pending.</p>
+  </div>
+);
 
 function App() {
-  const [cart] = useState<CartItem[]>(INITIAL_CART);
-  const [selectedId, setSelectedId] = useState<string | undefined>('1');
-
   return (
-    <MainLayout 
-      functionKeys={<FunctionKeyPad />}
-    >
-      <TransactionTable 
-        items={cart} 
-        selectedId={selectedId}
-        onSelect={setSelectedId}
-      />
-    </MainLayout>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/pos" replace />} />
+        <Route path="/pos" element={<POS />} />
+        
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<DashboardHome />} />
+          <Route path="documents" element={<Placeholder title="Documents" />} />
+          <Route path="products" element={<Placeholder title="Products" />} />
+          <Route path="stock" element={<Placeholder title="Stock" />} />
+          <Route path="pricelists" element={<Placeholder title="Price Lists" />} />
+          {/* Add other routes as needed */}
+          <Route path="*" element={<Placeholder title="Not Found" />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

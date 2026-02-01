@@ -28,7 +28,11 @@ const FunctionKey: React.FC<FunctionKeyProps> = ({ label, subLabel, code, color 
   );
 };
 
-export const FunctionKeyPad: React.FC = () => {
+interface FunctionKeyPadProps {
+  onAction: (action: string) => void;
+}
+
+export const FunctionKeyPad: React.FC<FunctionKeyPadProps> = ({ onAction }) => {
   return (
     <div className="function-grid" style={{ 
       width: '300px', 
@@ -37,51 +41,22 @@ export const FunctionKeyPad: React.FC = () => {
       borderLeft: '1px solid var(--border-color)'
     }}>
       {/* Top Controls */}
-      <FunctionKey code="" label="Delete" subLabel="✕" />
-      <FunctionKey code="F3" label="Search" subLabel="🔍" />
-      <FunctionKey code="F4" label="Quantity" subLabel="📦" />
-      <FunctionKey code="F8" label="New sale" subLabel="+" />
-
-      {/* Payment Types */}
-      <FunctionKey code="F12" label="Cash" colSpan={1} />
-      <FunctionKey code="" label="Credit Card" />
-      <FunctionKey code="" label="Debit Card" />
-      <FunctionKey code="" label="Check" />
-      <FunctionKey code="" label="Voucher" />
-      <FunctionKey code="" label="Gift Card" />
-
-      {/* Spacer / Logo Area */}
-      <div style={{ 
-        gridColumn: '1 / -1', 
-        gridRow: 'span 2', 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center',
-        background: 'var(--bg-dark)',
-        opacity: 0.1,
-        fontSize: '2rem',
-        fontWeight: 'bold'
-      }}>
-        aronium
-      </div>
+      <FunctionKey code="" label="Delete" subLabel="✕" onClick={() => onAction('DELETE')} />
+      <FunctionKey code="F8" label="New sale" subLabel="+" onClick={() => onAction('NEW_SALE')} />
 
       <FunctionKey code="" label="Cash drawer" subLabel="Example" />
       <div style={{background: 'var(--bg-panel)'}}></div>
 
       {/* Bottom Actions */}
-      <FunctionKey code="F2" label="Discount" subLabel="%" />
-      <FunctionKey code="" label="Comment" subLabel="💬" />
+      <FunctionKey code="F2" label="Discount" subLabel="%" onClick={() => onAction('DISCOUNT')} />
       <FunctionKey code="" label="Customer" subLabel="👤" />
-      <FunctionKey code="" label="..." />
 
-      <FunctionKey code="F9" label="Save sale" />
-      <FunctionKey code="" label="Refund" subLabel="↺" />
-      <FunctionKey code="F10" label="Payment" rowSpan={1} colSpan={2} color="green" />
+      <FunctionKey code="F9" label="Save sale" onClick={() => onAction('SAVE')} />
+      <FunctionKey code="" label="Refund" subLabel="↺" onClick={() => onAction('REFUND')} />
+      <FunctionKey code="F10" label="Payment" rowSpan={1} colSpan={2} color="green" onClick={() => onAction('PAYMENT')} />
 
-      <FunctionKey code="" label="Lock" subLabel="🔒" />
-      <FunctionKey code="F7" label="Transfer" />
-      <FunctionKey code="" label="Void order" color="red" />
-      <FunctionKey code="" label="..." subLabel="•••" />
+      <FunctionKey code="" label="Void order" color="red" onClick={() => onAction('VOID')} />
+      <FunctionKey code="" label="..." subLabel="•••" onClick={() => onAction('MENU')} />
     </div>
   );
 };
