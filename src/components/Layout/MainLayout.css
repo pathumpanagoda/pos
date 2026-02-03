@@ -49,6 +49,7 @@
   background-color: transparent;
   color: white;
   margin-left: 20px;
+  position: relative;
 }
 
 .search-input {

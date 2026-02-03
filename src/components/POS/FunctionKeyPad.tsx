@@ -37,8 +37,8 @@ export const FunctionKeyPad: React.FC<FunctionKeyPadProps> = ({ onAction }) => {
     <div className="function-grid" style={{ 
       width: '300px', 
       height: '100%', 
-      gridTemplateRows: 'repeat(6, 1fr)',
-      borderLeft: '1px solid var(--border-color)'
+      gridTemplateRows: 'repeat(6, 2fr)',
+      borderLeft: '2px solid var(--border-color)'
     }}>
       {/* Top Controls */}
       <FunctionKey code="" label="Delete" subLabel="✕" onClick={() => onAction('DELETE')} />
@@ -56,7 +56,7 @@ export const FunctionKeyPad: React.FC<FunctionKeyPadProps> = ({ onAction }) => {
       <FunctionKey code="F10" label="Payment" rowSpan={1} colSpan={2} color="green" onClick={() => onAction('PAYMENT')} />
 
       <FunctionKey code="" label="Void order" color="red" onClick={() => onAction('VOID')} />
-      <FunctionKey code="" label="..." subLabel="•••" onClick={() => onAction('MENU')} />
+      <FunctionKey code="" label="•••" onClick={() => onAction('MENU')} />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './MainLayout.css';
 import { MOCK_PRODUCTS } from '../../data/products';
 import type { Product } from '../../types';
+import { Asterisk, Barcode, Hash, Tag, Search } from 'lucide-react';
 
 interface MainLayoutProps {
   children: React.ReactNode;      // The Transaction Table
@@ -43,33 +44,17 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children, functionKeys, 
       {/* 1. Header */}
       <header className="app-header">
          {/* Icons */}
-         <div style={{ display: 'flex', gap: 16, fontSize: '1.2rem', color: '#ccc', alignItems: 'center' }}>
-            <span>✳</span>
-            <span>|||||</span>
-            <span>#</span>
-            <span style={{ color: 'var(--accent-cyan)' }}>🏷</span>
-            <button 
-              onClick={() => navigate('/dashboard')}
-              style={{
-                marginLeft: 10,
-                padding: '4px 8px',
-                backgroundColor: '#333',
-                border: '1px solid #555',
-                borderRadius: 4,
-                color: '#fff',
-                cursor: 'pointer',
-                fontSize: '0.8rem'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#444'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#333'}
-            >
-              Dashboard
-            </button>
+         <div style={{ display: 'flex', gap: 24, alignItems: 'center', marginLeft: 8 }}>
+            <Asterisk size={25} color="#fff" strokeWidth={2.5} />
+            <Barcode size={20} color="#fff" strokeWidth={2.5} />
+            <Hash size={20} color="#fff" strokeWidth={2.5} />
+            <Tag size={20} fill="#00b4d8" color="#00b4d8" strokeWidth={0} /> {/* Filled blue tag */}
          </div>
          
          {/* Search */}
-         <div className="search-bar" style={{ position: 'relative' }}>
-            <span style={{ marginRight: 8 }}>🔍</span>
+         <div className="search-bar">
+            <Search size={18} color="#9ca3af" style={{ marginRight: 12 }} />
+            <div style={{ height: '20px', width: '1px', backgroundColor: '#4b5563', marginRight: 12 }}></div>
             <input 
               type="text" 
               className="search-input" 
@@ -112,12 +97,12 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children, functionKeys, 
             )}
          </div>
 
-         {/* Window Controls (Mac/Win style placeholder) */}
+         {/* Window Controls (Mac/Win style placeholder)
          <div style={{ marginLeft: 'auto', display: 'flex', gap: 16 }}>
             <span>–</span>
             <span>☐</span>
             <span>✕</span>
-         </div>
+         </div> */}
       </header>
       
       {/* 2. Main Transaction Area */}
