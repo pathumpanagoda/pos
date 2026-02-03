@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './MainLayout.css';
 import { MOCK_PRODUCTS } from '../../data/products';
 import type { Product } from '../../types';
-import { Asterisk, Barcode, Hash, Tag, Search } from 'lucide-react';
+import { Asterisk, Barcode, Hash, Tag, Search, MoreVertical } from 'lucide-react';
 
 interface MainLayoutProps {
   children: React.ReactNode;      // The Transaction Table
@@ -15,6 +15,40 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children, functionKeys, 
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<Product[]>([]);
+  
+  // Resize State
+  const [rightPanelWidth, setRightPanelWidth] = useState(300);
+  const isResizing = useRef(false);
+
+  const startResizing = React.useCallback(() => {
+    isResizing.current = true;
+    document.body.style.cursor = 'col-resize';
+  }, []);
+
+  const stopResizing = React.useCallback(() => {
+    isResizing.current = false;
+    document.body.style.cursor = 'default';
+  }, []);
+
+  const resize = React.useCallback((e: MouseEvent) => {
+    if (isResizing.current) {
+      // Calculate new width: Total Window Width - Mouse X
+      // This assumes the panel is on the right.
+      const newWidth = window.innerWidth - e.clientX;
+      if (newWidth >= 200 && newWidth <= 600) { // Constraint bounds
+        setRightPanelWidth(newWidth);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('mousemove', resize);
+    window.addEventListener('mouseup', stopResizing);
+    return () => {
+      window.removeEventListener('mousemove', resize);
+      window.removeEventListener('mouseup', stopResizing);
+    };
+  }, [resize, stopResizing]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value;
@@ -40,7 +74,10 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children, functionKeys, 
   };
 
   return (
-    <div className="layout-container">
+    <div 
+      className="layout-container" 
+      style={{ gridTemplateColumns: `1fr ${rightPanelWidth}px` }}
+    >
       {/* 1. Header */}
       <header className="app-header">
          {/* Icons */}
@@ -96,13 +133,6 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children, functionKeys, 
               </div>
             )}
          </div>
-
-         {/* Window Controls (Mac/Win style placeholder)
-         <div style={{ marginLeft: 'auto', display: 'flex', gap: 16 }}>
-            <span>–</span>
-            <span>☐</span>
-            <span>✕</span>
-         </div> */}
       </header>
       
       {/* 2. Main Transaction Area */}
@@ -112,6 +142,12 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children, functionKeys, 
 
       {/* 3. Right Function Keys */}
       <aside className="right-panel">
+        <div 
+          className="resize-handle"
+          onMouseDown={startResizing}
+        >
+           <MoreVertical size={24} color="#fff" className="resize-handle-icon" />
+        </div>
         {functionKeys}
       </aside>
     </div>
