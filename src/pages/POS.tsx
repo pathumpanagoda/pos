@@ -3,6 +3,7 @@ import { MainLayout } from '../components/Layout/MainLayout';
 import { TransactionTable } from '../components/POS/TransactionTable';
 import { FunctionKeyPad } from '../components/POS/FunctionKeyPad';
 import { SideMenu } from '../components/POS/SideMenu';
+import { PaymentOverlay } from '../components/POS/PaymentOverlay';
 import type { CartItem, Product } from '../types';
 
 // Mock Items for visual check (Pre-filled cart)
@@ -15,8 +16,7 @@ export const POS = () => {
   const [cart, setCart] = useState<CartItem[]>(INITIAL_CART);
   const [selectedId, setSelectedId] = useState<string | undefined>('1');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // ... (existing helper functions)
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
 
   const addToCart = (product: Product) => {
     setCart((prev: CartItem[]) => {
@@ -44,7 +44,7 @@ export const POS = () => {
 
   const calculateTotals = () => {
     const subtotal = cart.reduce((sum: number, item: CartItem) => sum + (item.price * item.quantity), 0);
-    const tax = subtotal * 0.10; // 10% tax
+    const tax = subtotal * 0.00; // 0% tax per screenshots
     const total = subtotal + tax;
     return { subtotal, tax, total };
   };
@@ -58,6 +58,8 @@ export const POS = () => {
         if (selectedId) removeFromCart(selectedId);
         break;
       case 'PAYMENT':
+        setIsPaymentOpen(true);
+        break;
       case 'NEW_SALE':
         if (confirm('Start new sale? Current cart will be cleared.')) {
           clearCart();
@@ -69,6 +71,11 @@ export const POS = () => {
       default:
         console.log('Action:', action);
     }
+  };
+
+  const handlePaymentComplete = () => {
+     setIsPaymentOpen(false);
+     clearCart();
   };
 
   return (
@@ -84,7 +91,16 @@ export const POS = () => {
         tax={tax}
         total={total}
       />
+      
       <SideMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+
+      <PaymentOverlay 
+        isOpen={isPaymentOpen}
+        items={cart}
+        total={total}
+        onClose={() => setIsPaymentOpen(false)}
+        onComplete={handlePaymentComplete}
+      />
     </MainLayout>
   );
 };

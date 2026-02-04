@@ -1,0 +1,310 @@
+.payment-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-dark); /* or #202020 */
+  z-index: 3000;
+  display: flex;
+  color: #fff;
+}
+
+/* LEFT PANEL (ITEMS) */
+.pay-left-panel {
+  width: 300px;
+  background-color: #252526;
+  border-right: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.pay-items-header {
+  padding: 12px;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #333;
+}
+
+.pay-items-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.pay-item-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.pn { font-weight: 600; color: #eee; }
+.pq { font-size: 0.8rem; color: #aaa; margin-top: 2px; }
+.pay-item-total { font-weight: 600; }
+
+.pay-left-footer {
+  background-color: #2d2d2d;
+  padding: 16px;
+  border-top: 1px solid #333;
+}
+
+.pl-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.pl-row.total {
+  color: #00bef2; /* Blue Total */
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #444;
+}
+
+/* RIGHT PANEL (ACTIONS) */
+.pay-right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #2d2d2d; 
+}
+
+.pay-header {
+  height: 40px;
+  background-color: #252526;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid #333;
+}
+.ph-title { font-size: 0.9rem; color: #ccc; }
+.ph-close-btn { background: none; border: none; color: #ccc; cursor: pointer; }
+
+/* TOP ACTIONS ROW */
+.pay-top-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.cancel-btn {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.cancel-btn:hover { background-color: #b71c1c; }
+
+.pay-top-right {
+  display: flex;
+  gap: 6px;
+}
+
+.pay-top-right button {
+  background-color: #333;
+  border: 1px solid #444;
+  color: #ccc;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+/* MAIN AREA SPLIT (Methods | Input) */
+.pay-main-area {
+  display: flex;
+  flex: 1;
+  padding: 0 16px;
+}
+
+/* PAYMENT METHODS COLUMN */
+.payment-methods {
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-right: 24px;
+}
+
+.pm-label { color: #aaa; margin-bottom: 4px; font-size: 0.9rem; }
+
+.pm-btn {
+  background-color: #333;
+  border: 1px solid #444;
+  color: #eee;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.pm-btn:hover { background-color: #3e3e3e; }
+.pm-btn.active { border-left: 3px solid #00bef2; background-color: #333; } /* Selected indicator */
+.pm-btn.split { margin-top: 12px; display: flex; align-items: center; gap: 6px; }
+
+/* INPUT & NUMPAD AREA */
+.payment-input-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+}
+
+.pi-label { color: #aaa; margin-bottom: 8px; font-size: 0.9rem; }
+
+.pi-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+.pi-value.blue { color: #00bef2; font-weight: bold; }
+.pi-value.white { color: #fff; font-weight: bold; }
+
+.pi-paid-box {
+  margin-bottom: 16px;
+}
+
+.pi-input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #555;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: right;
+  outline: none;
+}
+
+.pi-numpad-wrapper {
+  margin-top: auto;
+  margin-bottom: 20px;
+  width: 320px;
+  align-self: flex-end;
+}
+
+.pay-numpad-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 60px);
+  gap: 1px;
+  background-color: #444;
+  border: 1px solid #444;
+}
+
+.pay-numpad-grid button {
+  background-color: #2d2d2d;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.pay-numpad-grid button:hover { background-color: #3e3e3e; }
+.pay-numpad-grid button:active { background-color: #555; }
+
+.pay-enter-btn {
+  grid-column: 4;
+  grid-row: 3 / span 2;
+  background-color: #2d2d2d; /* No special color in dark UI usually, or blue? Screenshot shows standard dark */
+}
+.pay-enter-btn:disabled { color: #555; cursor: not-allowed; }
+
+
+/* RECEIPT STEP */
+.receipt-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.receipt-center {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.change-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.change-amount {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #37a000; /* Green */
+}
+.change-text { font-size: 2rem; color: #eee; }
+
+.receipt-question {
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 24px;
+}
+
+.receipt-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 800px;
+}
+
+.receipt-opt-btn {
+  background-color: #252526;
+  border: 1px solid #444;
+  color: #eee;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.receipt-opt-btn:hover { background-color: #333; }
+.receipt-opt-btn.active { border-color: #00bef2; background-color: #2d2d35; } /* Highlighted */
+
+.receipt-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #252526;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #333;
+}
+
+.done-btn {
+  background-color: #37a000;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  padding: 10px 32px;
+  cursor: pointer;
+}
+.done-btn:hover { background-color: #2e8b00; }
+
+.rf-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ccc;
+}
