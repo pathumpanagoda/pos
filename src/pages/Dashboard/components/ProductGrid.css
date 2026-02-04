@@ -1,0 +1,64 @@
+.product-grid-container {
+  height: 100%;
+  overflow: auto;
+  background-color: var(--bg-primary);
+  border-left: 1px solid var(--border-color);
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  table-layout: fixed;
+}
+
+.product-table th {
+  background-color: var(--bg-secondary);
+  padding: 6px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.product-table td {
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Striped rows */
+.product-table tr:nth-child(even) {
+  background-color: var(--bg-tertiary);
+}
+
+.product-table tr:hover {
+  background-color: var(--bg-hover);
+}
+
+.product-table tr.selected {
+  background-color: #0078d7;
+  color: white;
+}
+
+.product-table tr.selected td {
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  color: white;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-center {
+  text-align: center !important;
+}

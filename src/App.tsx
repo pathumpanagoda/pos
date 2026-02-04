@@ -3,6 +3,8 @@ import { POS } from './pages/POS';
 import { DashboardLayout } from './layouts/DashboardLayout';
 import { DashboardHome } from './pages/Dashboard/Home';
 
+import { Products } from './pages/Dashboard/Products';
+
 const Placeholder = ({ title }: { title: string }) => (
   <div style={{ color: '#fff', padding: 20 }}>
     <h1>{title}</h1>
@@ -20,7 +22,7 @@ function App() {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardHome />} />
           <Route path="documents" element={<Placeholder title="Documents" />} />
-          <Route path="products" element={<Placeholder title="Products" />} />
+          <Route path="products" element={<Products />} />
           <Route path="stock" element={<Placeholder title="Stock" />} />
           <Route path="pricelists" element={<Placeholder title="Price Lists" />} />
           {/* Add other routes as needed */}

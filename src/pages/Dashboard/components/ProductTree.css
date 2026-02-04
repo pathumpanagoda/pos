@@ -1,0 +1,53 @@
+.product-tree {
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  height: 100%;
+  overflow-y: auto;
+  padding-top: 4px;
+  font-size: 0.85rem;
+}
+
+.tree-node {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tree-node:hover {
+  background-color: var(--bg-hover);
+}
+
+.tree-node.selected {
+  background-color: #0078d7;
+  color: #ffffff;
+}
+
+.tree-expander {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.tree-node.selected .tree-expander {
+  color: #fff;
+}
+
+.tree-icon {
+  margin-right: 8px;
+  /* color: #ffffff; Folder color - maybe keep consistent or var it? keeping for now */
+}
+
+.tree-node.selected .tree-icon {
+  color: #fff;
+}
+
+.tree-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

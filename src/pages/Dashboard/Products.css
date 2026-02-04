@@ -1,0 +1,94 @@
+.products-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--bg-primary);
+}
+
+/* Filter Bar */
+.products-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-secondary);
+  padding: 4px 16px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  height: 36px;
+}
+
+.filter-left, .filter-center, .filter-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  padding: 4px 6px;
+  border-radius: 2px;
+}
+
+.filter-icon-btn:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.filter-icon-btn.active {
+  color: var(--text-primary);
+}
+
+.filter-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.filter-search input {
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  padding: 4px 24px 4px 8px;
+  font-size: 0.85rem;
+  width: 250px;
+  outline: none;
+}
+
+.filter-search input:focus {
+  border-color: var(--accent-color);
+}
+
+.filter-search-icon {
+  position: absolute;
+  right: 6px;
+  color: var(--text-muted);
+}
+
+/* Split View */
+.products-split-view {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.split-left {
+  width: 250px;
+  min-width: 200px;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.split-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
