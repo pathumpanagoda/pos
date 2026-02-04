@@ -1,0 +1,103 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 100px; /* Position slightly from top like screenshot */
+  z-index: 2000;
+}
+
+.number-pad-modal {
+  background-color: #2d2d2d;
+  color: white;
+  width: 320px;
+  border: 1px solid #444;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  padding: 16px;
+  text-align: center;
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+  color: #ddd;
+}
+
+.modal-subtitle {
+  color: #ccc;
+  font-size: 0.9rem;
+  white-space: pre-wrap; /* Allow newlines */
+}
+
+.modal-input-container {
+  padding: 0 16px 16px 16px;
+}
+
+.modal-input {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #00bef2; /* Focus color */
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: right;
+  padding: 8px;
+  outline: none;
+}
+
+.numpad-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 64px);
+  gap: 1px;
+  background-color: #444; /* Grid gap color */
+  border-top: 1px solid #444;
+}
+
+.numpad-btn {
+  background-color: #2d2d2d;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.1s;
+}
+
+.numpad-btn:hover {
+  background-color: #3e3e3e;
+}
+
+.numpad-btn:active {
+  background-color: #555;
+}
+
+.text-btn {
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+.enter-btn {
+  grid-column: 4;
+  grid-row: 3 / span 2; /* Span last two rows */
+  background-color: #2d2d2d;
+}
+
+.numpad-btn svg {
+  stroke-width: 2.5;
+}

@@ -31,6 +31,27 @@
     font-weight: 600;
     border-bottom: 1px solid #333;
     color: var(--dash-text-light);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.back-btn {
+    background: transparent;
+    border: none;
+    color: var(--dash-text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.back-btn:hover {
+    background-color: var(--dash-hover);
+    color: var(--dash-text-light);
 }
 
 .sidebar-nav {

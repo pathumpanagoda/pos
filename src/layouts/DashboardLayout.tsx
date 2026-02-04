@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import { 
   LayoutDashboard, 
+  ArrowLeft, 
   FileText, 
   Package, 
   Tags, 
@@ -33,7 +34,10 @@ export const DashboardLayout = () => {
       {/* Sidebar */}
       <aside className="dashboard-sidebar">
         <div className="sidebar-header">
-          Management • Dashboard
+          <button className="back-btn" onClick={() => window.location.href = '/'}>
+            <ArrowLeft size={18} />
+          </button>
+          <span>Management</span>
         </div>
         
         <nav className="sidebar-nav">

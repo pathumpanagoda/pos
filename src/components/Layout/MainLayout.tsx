@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './MainLayout.css';
 import { MOCK_PRODUCTS } from '../../data/products';
 import type { Product } from '../../types';
+import { NumberPadModal } from '../Shared/NumberPadModal';
 import { Asterisk, Barcode, Hash, Tag, Search, MoreVertical } from 'lucide-react';
 
 interface MainLayoutProps {
@@ -65,12 +66,41 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children, functionKeys, 
     }
   };
 
+  // Product Selection Workflow State
+  const [workflowStep, setWorkflowStep] = useState<'idle' | 'price' | 'quantity'>('idle');
+  const [pendingProduct, setPendingProduct] = useState<Product | null>(null);
+
   const handleSelectProduct = (product: Product) => {
-    if (onProductSelect) {
-      onProductSelect(product);
-      setSearchTerm('');
-      setSearchResults([]);
+    setPendingProduct(product);
+    setWorkflowStep('price');
+    setSearchTerm('');
+    setSearchResults([]);
+  };
+
+  const handlePriceConfirm = (priceStr: string) => {
+    if (pendingProduct) {
+      const price = parseFloat(priceStr);
+      setPendingProduct({ ...pendingProduct, price: isNaN(price) ? 0 : price });
+      setWorkflowStep('quantity');
     }
+  };
+
+  const handleQuantityConfirm = (qtyStr: string) => {
+    if (pendingProduct && onProductSelect) {
+      const quantity = parseFloat(qtyStr);
+      const finalProduct = { 
+        ...pendingProduct, 
+        quantity: isNaN(quantity) ? 1 : quantity 
+      };
+      onProductSelect(finalProduct);
+      setWorkflowStep('idle');
+      setPendingProduct(null);
+    }
+  };
+
+  const handleCancelWorkflow = () => {
+    setWorkflowStep('idle');
+    setPendingProduct(null);
   };
 
   return (
@@ -150,6 +180,25 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children, functionKeys, 
         </div>
         {functionKeys}
       </aside>
+
+      {/* Product Workflow Modals */}
+      <NumberPadModal 
+        isOpen={workflowStep === 'price'}
+        title="Change price"
+        subTitle={`Product "${pendingProduct?.name}"\nPrice: ${pendingProduct?.price.toLocaleString(undefined, {minimumFractionDigits: 2})}`}
+        initialValue={pendingProduct?.price.toString()}
+        onClose={handleCancelWorkflow}
+        onConfirm={handlePriceConfirm}
+      />
+
+      <NumberPadModal 
+        isOpen={workflowStep === 'quantity'}
+        title="Change quantity"
+        subTitle={`Product "${pendingProduct?.name}"\nDefault quantity: 1.000`}
+        initialValue="1"
+        onClose={handleCancelWorkflow}
+        onConfirm={handleQuantityConfirm}
+      />
     </div>
   );
 };
