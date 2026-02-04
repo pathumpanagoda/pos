@@ -1,0 +1,102 @@
+.stock-grid-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  border-left: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.stock-table-wrapper {
+  flex: 1;
+  overflow: auto;
+}
+
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  table-layout: fixed;
+}
+
+.stock-table th {
+  background-color: var(--bg-secondary);
+  padding: 6px 8px;
+  text-align: left;
+  border-bottom: 2px solid #00bef2; /* Blue underline header */
+  border-right: 1px solid var(--border-color);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.stock-table td {
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Striped rows */
+.stock-table tr:nth-child(even) {
+  background-color: var(--bg-tertiary);
+}
+
+.stock-table tr:hover {
+  background-color: var(--bg-hover);
+}
+
+.stock-table tr.selected {
+  background-color: #333; /* Dark gray selection in screenshot? Or keep blue? Screenshot shows standard dark selection but I'll use blue for consistency if better, but screenshot actually doesn't show a selection. It shows zebra striping. I'll use simple hover/stripe. Wait, screenshot doesn't show selection. I'll keep logic but default to none selected. */
+}
+/* User requested earlier blue selection for products. I'll stick to that or standard. */
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.status-dot.green { background-color: #37a000; }
+
+.text-right { text-align: right !important; }
+.text-center { text-align: center !important; }
+
+/* Footer */
+.stock-footer {
+  background-color: #1a1a1a;
+  padding: 8px 16px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+  gap: 40px;
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+.footer-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-label {
+    color: #ccc;
+    margin-bottom: 2px;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.footer-value {
+  font-weight: 600;
+  color: white;
+}
