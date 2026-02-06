@@ -4,6 +4,7 @@ import {
   CornerDownLeft, Delete, AlignJustify,
   Printer, Mail, FileText, Check
 } from 'lucide-react';
+import { printReceipt } from '../../utils/receiptPrinter';
 import type { CartItem } from '../../types';
 import './PaymentOverlay.css';
 
@@ -32,6 +33,18 @@ export const PaymentOverlay: React.FC<PaymentOverlayProps> = ({
   const paidAmount = parseFloat(paidAmountStr) || 0;
   const change = paidAmount - total;
   const isSufficient = paidAmount >= total;
+
+  const handlePrint = () => {
+    printReceipt({
+      items,
+      subtotal: total,
+      tax: 0,
+      total,
+      paid: paidAmount,
+      change,
+      date: new Date()
+    });
+  };
 
   const handleKeyPress = useCallback((key: string) => {
     if (step !== 'payment') return;
@@ -230,7 +243,7 @@ export const PaymentOverlay: React.FC<PaymentOverlayProps> = ({
                     <div className="receipt-question">How would the customer like their receipt?</div>
                     
                     <div className="receipt-options">
-                        <button className="receipt-opt-btn active">
+                        <button className="receipt-opt-btn active" onClick={handlePrint}>
                             <Printer size={32} />
                             <span>Print receipt</span>
                         </button>

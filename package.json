@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "compile:main": "tsc electron/main.ts --outDir dist-electron --sourceMap --module esnext --target esnext --moduleResolution node --esModuleInterop --skipLibCheck",
+    "compile:main": "tsc electron/main.ts electron/preload.ts --outDir dist-electron --sourceMap --module esnext --target esnext --moduleResolution node --esModuleInterop --skipLibCheck",
     "electron": "wait-on tcp:5173 && cross-env NODE_ENV=development electron .",
     "dev:electron": "npm run compile:main && concurrently -k \"npm run dev\" \"npm run electron\"",
     "lint": "eslint .",

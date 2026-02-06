@@ -44,7 +44,7 @@ export const DashboardLayout = () => {
           <SidebarItem to="/dashboard" icon={LayoutDashboard} label="Dashboard" />
           <SidebarItem to="/dashboard/documents" icon={FileText} label="Documents" />
           <SidebarItem to="/dashboard/products" icon={Tags} label="Products" />
-          <SidebarItem to="/dashboard/pricelists" icon={CreditCard} label="Price lists" />
+          {/* <SidebarItem to="/dashboard/pricelists" icon={CreditCard} label="Price lists" /> */}
           <SidebarItem to="/dashboard/stock" icon={Box} label="Stock" />
           
           <div className="sidebar-divider" />
